@@ -1,6 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.template import loader
 from .models import Post, Group
 
 
@@ -14,7 +12,7 @@ def index(request):
 
 
 # Страница с постами
-def group_posts(request, slug=None):
+def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
     context = {
