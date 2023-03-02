@@ -1,20 +1,26 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Group
+from django.conf import settings
+
+from django.shortcuts import get_object_or_404, render
+
+from .models import Group, Post
+
+"""Главная страница."""
 
 
-# Главная страница
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.order_by('-pub_date')[:settings.POSTS_ON_PAGE]
     context = {
         'posts': posts,
     }
     return render(request, 'posts/index.html', context)
 
 
-# Страница с постами
+"""Страница с постами."""
+
+
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.posts.order_by('-pub_date')[:settings.POSTS_ON_PAGE]
     context = {
         'group': group,
         'posts': posts,
