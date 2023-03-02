@@ -14,7 +14,7 @@ def index(request):
 
 
 # Страница с постами
-def group_posts(request, slug):
+def group_posts(request, slug=None):
     group = get_object_or_404(Group, slug=slug)
     posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
     context = {
