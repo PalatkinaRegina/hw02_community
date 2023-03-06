@@ -2,7 +2,7 @@
 {% block title %}Последние обновления на сайте{% endblock %}
 {% block header %}Последние обновления на сайте{% endblock %}
 {% block content %}
-    {% for post in posts %}
+    {% for post in page_obj %}
         <article>
             <ul>
                 <li>
@@ -23,4 +23,5 @@
             <hr>
         {% endif %}
     {% endfor %}
+    {% include 'posts/includes/paginator.html' %}
 {% endblock %}
