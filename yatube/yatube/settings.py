@@ -31,6 +31,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Application definition
 
 INSTALLED_APPS = [
+    'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'posts.apps.PostsConfig',
     'django.contrib.admin',
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.year.year',
             ],
         },
     },
@@ -125,3 +127,12 @@ STATIC_URL = '/static/'
 
 
 POSTS_ON_PAGE = 10
+
+
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'posts:index'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
