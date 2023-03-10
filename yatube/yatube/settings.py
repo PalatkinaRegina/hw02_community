@@ -31,6 +31,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Application definition
 
 INSTALLED_APPS = [
+    'about.apps.AboutConfig',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'posts.apps.PostsConfig',
